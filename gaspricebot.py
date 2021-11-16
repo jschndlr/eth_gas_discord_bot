@@ -13,10 +13,13 @@ url = os.getenv('TARGET_URL')
 path = os.getenv('TARGET_FILE')
 TOKEN = os.getenv('DISCORD_TOKEN')
 
+#Open driver and get gas page
+driver = webdriver.Chrome()
+driver.get(url)
+
 #Grab image through chromedriver using selenium
 async def getgas():
-    driver = webdriver.Chrome()
-    driver.get(url)
+    driver.refresh()
     el = driver.find_element(By.ID, "body")
     el.screenshot(path)
     crop_image()
