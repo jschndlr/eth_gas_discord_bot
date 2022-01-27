@@ -6,6 +6,9 @@ from PIL import Image
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import cv2
+import numpy as np
+
 
 #Load environment variables
 load_dotenv()
@@ -26,8 +29,12 @@ async def getgas():
 
 #Crop image and re-save
 def crop_image():
-    crop = Image.open(path).crop((0,168,919,709))
+    crop = Image.open(path).crop((0,325,919,709))
     crop.save('scrape.png')
+    img1 = cv2.imread('banner.png')
+    img2 = cv2.imread('scrape.png')
+    vis = np.concatenate((img1, img2), axis=0)
+    cv2.imwrite('gastrackerbot.png', vis)
 
 #Discord bot and events
 client = discord.Client()
@@ -40,7 +47,7 @@ async def on_ready():
 async def on_message(message):
     if message.content.startswith('!gas'):
         await getgas()
-        await message.channel.send(file=discord.File(path))
+        await message.channel.send(file=discord.File('gastrackerbot.png'))
 
 try:
     client.run(TOKEN)
