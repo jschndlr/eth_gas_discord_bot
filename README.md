@@ -6,7 +6,7 @@ copy below, paste in file named ".env"
 
 ```
 # .env
-DISCORD_TOKEN=OTA5NjQzNDgzMTAxNDEzNDE4.YZHRgg.8Q7zgyFBgVT5NzED0eeBc8y0bj0
+DISCORD_TOKEN=[YOUR DISCO TOKEN HERE]
 TARGET_URL=https://etherscan.io/gastracker
 TARGET_FILE=scrape.png
 ```
